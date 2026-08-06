@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OmniKit Hub | Fast Web Developer Utilities</title>
+    <meta name="description" content="A curated collection of lightning-fast, secure client-side developer and creator tools designed for seamless workflows.">
+    <meta name="robots" content="index, follow">
+    <style>
+        :root {
+            --bg-color: #030712;
+            --card-bg: #0b0f19;
+            --text-color: #f3f4f6;
+            --accent-color: #3b82f6;
+            --accent-hover: #2563eb;
+            --border-color: #1f2937;
+            --text-muted: #9ca3af;
+            --success-color: #10b981;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.7;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 5%;
+            background: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo { font-size: 1.35rem; font-weight: 900; color: var(--accent-color); cursor: pointer; }
+        nav { display: flex; align-items: center; gap: 1.5rem; }
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        nav a:hover { color: var(--accent-color); }
+        
+        main {
+            max-width: 1300px;
+            margin: 2.5rem auto;
+            padding: 0 1.5rem;
+            min-height: 75vh;
+        }
+        .page-section { display: none; }
+        .page-section.active { display: block; }
+
+        .hero {
+            text-align: center;
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, #111827 0%, #030712 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            margin-bottom: 3rem;
+        }
+        .hero h1 { font-size: 3rem; margin-bottom: 1.25rem; font-weight: 900; color: #ffffff; }
+        .hero h1 span { color: var(--accent-color); }
+        .hero p { font-size: 1.15rem; color: var(--text-muted); max-width: 850px; margin: 0 auto 2rem auto; }
+        
+        .btn-main {
+            background: var(--accent-color);
+            color: #ffffff;
+            border: none;
+            padding: 0.85rem 2.2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: background 0.2s;
+        }
+        .btn-main:hover { background: var(--accent-hover); }
+
+        .filters {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        .filter-tab {
+            background: var(--card-bg);
+            color: var(--text-muted);
+            border: 1px solid var(--border-color);
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .filter-tab.active, .filter-tab:hover {
+            background: var(--accent-color);
+            color: #ffffff;
+            border-color: var(--accent-color);
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.75rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .card:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+        .card h3 { font-size: 1.2rem; margin-bottom: 0.75rem; color: #ffffff; }
+        .card p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.2rem; }
+        .card span { color: var(--accent-color); font-weight: 600; font-size: 0.9rem; }
+
+        .workspace {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2.5rem;
+        }
+        .workspace textarea {
+            width: 100%;
+            height: 140px;
+            background: #030712;
+            border: 1px solid var(--border-color);
+            color: #fff;
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: monospace;
+            margin-bottom: 1rem;
+            resize: vertical;
+        }
+        .workspace .output-box {
+            width: 100%;
+            height: 100px;
+            background: #111827;
+            border: 1px solid var(--border-color);
+            color: var(--success-color);
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: monospace;
+        }
+        .back-link {
+            background: transparent;
+            color: var(--text-muted);
+            border: 1px solid var(--border-color);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2.5rem;
+            background: var(--card-bg);
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo" onclick="changePage('home')">OmniKit Hub</div>
+        <nav>
+            <a onclick="changePage('home')">Home</a>
+            <a onclick="changePage('tools')">Tools</a>
+            <a onclick="changePage('about')">About</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- HOME PAGE -->
+        <div id="home" class="page-section active">
+            <div class="hero">
+                <h1>Lightning-Fast <span>Developer Utilities</span></h1>
+                <p>Secure, clean, and optimized client-side tools built for absolute performance and zero server lag.</p>
+                <button class="btn-main" onclick="changePage('tools')">Get Started</button>
+            </div>
+        </div>
+
+        <!-- TOOLS DIRECTORY -->
+        <div id="tools" class="page-section">
+            <div style="margin-bottom: 1.5rem;">
+                <h2 style="font-size: 2rem; color: #fff; margin-bottom: 0.5rem;">Utility Ecosystem</h2>
+                <p style="color: var(--text-muted);">Select a tool to launch its secure browser workspace.</p>
+            </div>
+
+            <div class="filters">
+                <button class="filter-tab active" onclick="filterTools('all', this)">All</button>
+                <button class="filter-tab" onclick="filterTools('dev', this)">Development</button>
+                <button class="filter-tab" onclick="filterTools('seo', this)">SEO & Marketing</button>
+            </div>
+
+            <div class="tools-grid">
+                <div class="card" data-cat="dev" onclick="launchTool('json')">
+                    <h3>JSON Formatter</h3>
+                    <p>Clean and validate raw JSON structures instantly inside your browser.</p>
+                    <span>Launch Tool &rarr;</span>
+                </div>
+                <div class="card" data-cat="dev" onclick="launchTool('base64')">
+                    <h3>Base64 Encoder</h3>
+                    <p>Convert text strings securely with zero latency.</p>
+                    <span>Launch Tool &rarr;</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ACTIVE WORKSPACE -->
+        <div id="workspace" class="page-section">
+            <button class="back-link" onclick="changePage('tools')">&larr; Back to Directory</button>
+            <div class="workspace" id="workspaceContent"></div>
+        </div>
+
+        <!-- ABOUT PAGE -->
+        <div id="about" class="page-section">
+            <div class="workspace">
+                <h2 style="color: #fff; margin-bottom: 1rem;">About OmniKit Hub</h2>
+                <p style="color: var(--text-muted); margin-bottom: 1rem;">Engineered for high-speed client-side execution, ensuring total data privacy and 100% uptime on static hosting providers like GitHub Pages.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 OmniKit Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function changePage(pageId) {
+            document.querySelectorAll('.page-section').forEach(el => el.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function filterTools(cat, btn) {
+            document.querySelectorAll('.filter-tab').forEach(el => el.classList.remove('active'));
+            btn.classList.add('active');
+            document.querySelectorAll('.card').forEach(card => {
+                if (cat === 'all' || card.getAttribute('data-cat') === cat) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function launchTool(type) {
+            const container = document.getElementById('workspaceContent');
+            if (type === 'json') {
+                container.innerHTML = `
+                    <h2 style="color:#fff; margin-bottom:1rem;">JSON Formatter Workspace</h2>
+                    <textarea id="jsonIn">{ "status": "active" }</textarea>
+                    <button class="btn-main" onclick="runJson()">Format JSON</button>
+                    <div style="margin-top:1.5rem;">
+                        <label style="color:var(--text-muted); font-size:0.9rem; display:block; margin-bottom:0.5rem;">Output:</label>
+                        <div class="output-box" id="jsonOut">Ready...</div>
+                    </div>
+                `;
+            } else {
+                container.innerHTML = `
+                    <h2 style="color:#fff; margin-bottom:1rem;">Base64 Encoder Workspace</h2>
+                    <textarea id="b64In">OmniKit Hub</textarea>
+                    <button class="btn-main" onclick="runB64()">Encode</button>
+                    <div style="margin-top:1.5rem;">
+                        <label style="color:var(--text-muted); font-size:0.9rem; display:block; margin-bottom:0.5rem;">Output:</label>
+                        <div class="output-box" id="b64Out">Ready...</div>
+                    </div>
+                `;
+            }
+            changePage('workspace');
+        }
+
+        function runJson() {
+            try {
+                const val = document.getElementById('jsonIn').value;
+                const res = JSON.parse(val);
+                document.getElementById('jsonOut').innerText = JSON.stringify(res, null, 4);
+                document.getElementById('jsonOut').style.color = 'var(--success-color)';
+            } catch (e) {
+                document.getElementById('jsonOut').innerText = "Error: " + e.message;
+                document.getElementById('jsonOut').style.color = '#ef4444';
+            }
+        }
+
+        function runB64() {
+            try {
+                const val = document.getElementById('b64In').value;
+                const res = btoa(unescape(encodeURIComponent(val)));
+                document.getElementById('b64Out').innerText = res;
+                document.getElementById('b64Out').style.color = 'var(--success-color)';
+            } catch (e) {
+                document.getElementById('b64Out').innerText = "Encoding failed.";
+                document.getElementById('b64Out').style.color = '#ef4444';
+            }
+        }
+    </script>
+</body>
+</html>
